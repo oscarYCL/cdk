@@ -18,13 +18,13 @@
           {
             "type": "aws:cdk:asset",
             "data": {
-              "path": "asset.a34c6249bd6934c50be8e95550f0dcd51759981313d1f4c660a742f8f0c19bbe",
-              "id": "a34c6249bd6934c50be8e95550f0dcd51759981313d1f4c660a742f8f0c19bbe",
+              "path": "asset.744d4cd20a4927cde9111a84d88773a13193df8ea6e75bb0619e25889c3713fb",
+              "id": "744d4cd20a4927cde9111a84d88773a13193df8ea6e75bb0619e25889c3713fb",
               "packaging": "zip",
-              "sourceHash": "a34c6249bd6934c50be8e95550f0dcd51759981313d1f4c660a742f8f0c19bbe",
-              "s3BucketParameter": "AssetParametersa34c6249bd6934c50be8e95550f0dcd51759981313d1f4c660a742f8f0c19bbeS3Bucket8D41F5D4",
-              "s3KeyParameter": "AssetParametersa34c6249bd6934c50be8e95550f0dcd51759981313d1f4c660a742f8f0c19bbeS3VersionKey97C286BA",
-              "artifactHashParameter": "AssetParametersa34c6249bd6934c50be8e95550f0dcd51759981313d1f4c660a742f8f0c19bbeArtifactHash34ED348F"
+              "sourceHash": "744d4cd20a4927cde9111a84d88773a13193df8ea6e75bb0619e25889c3713fb",
+              "s3BucketParameter": "AssetParameters744d4cd20a4927cde9111a84d88773a13193df8ea6e75bb0619e25889c3713fbS3Bucket5A450149",
+              "s3KeyParameter": "AssetParameters744d4cd20a4927cde9111a84d88773a13193df8ea6e75bb0619e25889c3713fbS3VersionKey6324A272",
+              "artifactHashParameter": "AssetParameters744d4cd20a4927cde9111a84d88773a13193df8ea6e75bb0619e25889c3713fbArtifactHashD2FE54E9"
             },
             "trace": [
               "ConstructNode.addMetadata (/home/ec2-user/environment/cdk/node_modules/@aws-cdk/core/lib/construct-compat.ts:431:92)",
@@ -148,10 +148,10 @@
             ]
           }
         ],
-        "/CdkWorkshopStack/AssetParameters/a34c6249bd6934c50be8e95550f0dcd51759981313d1f4c660a742f8f0c19bbe/S3Bucket": [
+        "/CdkWorkshopStack/AssetParameters/744d4cd20a4927cde9111a84d88773a13193df8ea6e75bb0619e25889c3713fb/S3Bucket": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "AssetParametersa34c6249bd6934c50be8e95550f0dcd51759981313d1f4c660a742f8f0c19bbeS3Bucket8D41F5D4",
+            "data": "AssetParameters744d4cd20a4927cde9111a84d88773a13193df8ea6e75bb0619e25889c3713fbS3Bucket5A450149",
             "trace": [
               "new FileAssetParameters (/home/ec2-user/environment/cdk/node_modules/@aws-cdk/core/lib/private/asset-parameters.ts:16:32)",
               "LegacyStackSynthesizer.doAddFileAsset (/home/ec2-user/environment/cdk/node_modules/@aws-cdk/core/lib/stack-synthesizers/legacy.ts:150:16)",
@@ -181,10 +181,10 @@
             ]
           }
         ],
-        "/CdkWorkshopStack/AssetParameters/a34c6249bd6934c50be8e95550f0dcd51759981313d1f4c660a742f8f0c19bbe/S3VersionKey": [
+        "/CdkWorkshopStack/AssetParameters/744d4cd20a4927cde9111a84d88773a13193df8ea6e75bb0619e25889c3713fb/S3VersionKey": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "AssetParametersa34c6249bd6934c50be8e95550f0dcd51759981313d1f4c660a742f8f0c19bbeS3VersionKey97C286BA",
+            "data": "AssetParameters744d4cd20a4927cde9111a84d88773a13193df8ea6e75bb0619e25889c3713fbS3VersionKey6324A272",
             "trace": [
               "new FileAssetParameters (/home/ec2-user/environment/cdk/node_modules/@aws-cdk/core/lib/private/asset-parameters.ts:21:31)",
               "LegacyStackSynthesizer.doAddFileAsset (/home/ec2-user/environment/cdk/node_modules/@aws-cdk/core/lib/stack-synthesizers/legacy.ts:150:16)",
@@ -214,10 +214,10 @@
             ]
           }
         ],
-        "/CdkWorkshopStack/AssetParameters/a34c6249bd6934c50be8e95550f0dcd51759981313d1f4c660a742f8f0c19bbe/ArtifactHash": [
+        "/CdkWorkshopStack/AssetParameters/744d4cd20a4927cde9111a84d88773a13193df8ea6e75bb0619e25889c3713fb/ArtifactHash": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "AssetParametersa34c6249bd6934c50be8e95550f0dcd51759981313d1f4c660a742f8f0c19bbeArtifactHash34ED348F",
+            "data": "AssetParameters744d4cd20a4927cde9111a84d88773a13193df8ea6e75bb0619e25889c3713fbArtifactHashD2FE54E9",
             "trace": [
               "new FileAssetParameters (/home/ec2-user/environment/cdk/node_modules/@aws-cdk/core/lib/private/asset-parameters.ts:26:34)",
               "LegacyStackSynthesizer.doAddFileAsset (/home/ec2-user/environment/cdk/node_modules/@aws-cdk/core/lib/stack-synthesizers/legacy.ts:150:16)",
