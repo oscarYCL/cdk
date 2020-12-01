@@ -399,6 +399,409 @@
               }
             }
           },
+          "TheVPC": {
+            "id": "TheVPC",
+            "path": "CdkWorkshopStack/TheVPC",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "CdkWorkshopStack/TheVPC/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::EC2::VPC",
+                  "aws:cdk:cloudformation:props": {
+                    "cidrBlock": "10.0.0.0/16",
+                    "enableDnsHostnames": true,
+                    "enableDnsSupport": true,
+                    "instanceTenancy": "default",
+                    "tags": [
+                      {
+                        "key": "Name",
+                        "value": "CdkWorkshopStack/TheVPC"
+                      }
+                    ]
+                  }
+                }
+              },
+              "PublicSubnet1": {
+                "id": "PublicSubnet1",
+                "path": "CdkWorkshopStack/TheVPC/PublicSubnet1",
+                "children": {
+                  "Subnet": {
+                    "id": "Subnet",
+                    "path": "CdkWorkshopStack/TheVPC/PublicSubnet1/Subnet",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::EC2::Subnet",
+                      "aws:cdk:cloudformation:props": {
+                        "cidrBlock": "10.0.0.0/18",
+                        "vpcId": {
+                          "Ref": "TheVPC92636AB0"
+                        },
+                        "availabilityZone": {
+                          "Fn::Select": [
+                            0,
+                            {
+                              "Fn::GetAZs": ""
+                            }
+                          ]
+                        },
+                        "mapPublicIpOnLaunch": true,
+                        "tags": [
+                          {
+                            "key": "aws-cdk:subnet-name",
+                            "value": "Public"
+                          },
+                          {
+                            "key": "aws-cdk:subnet-type",
+                            "value": "Public"
+                          },
+                          {
+                            "key": "Name",
+                            "value": "CdkWorkshopStack/TheVPC/PublicSubnet1"
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  "Acl": {
+                    "id": "Acl",
+                    "path": "CdkWorkshopStack/TheVPC/PublicSubnet1/Acl"
+                  },
+                  "RouteTable": {
+                    "id": "RouteTable",
+                    "path": "CdkWorkshopStack/TheVPC/PublicSubnet1/RouteTable",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::EC2::RouteTable",
+                      "aws:cdk:cloudformation:props": {
+                        "vpcId": {
+                          "Ref": "TheVPC92636AB0"
+                        },
+                        "tags": [
+                          {
+                            "key": "Name",
+                            "value": "CdkWorkshopStack/TheVPC/PublicSubnet1"
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  "RouteTableAssociation": {
+                    "id": "RouteTableAssociation",
+                    "path": "CdkWorkshopStack/TheVPC/PublicSubnet1/RouteTableAssociation",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::EC2::SubnetRouteTableAssociation",
+                      "aws:cdk:cloudformation:props": {
+                        "routeTableId": {
+                          "Ref": "TheVPCPublicSubnet1RouteTable17DA183D"
+                        },
+                        "subnetId": {
+                          "Ref": "TheVPCPublicSubnet1Subnet770D4FF2"
+                        }
+                      }
+                    }
+                  },
+                  "DefaultRoute": {
+                    "id": "DefaultRoute",
+                    "path": "CdkWorkshopStack/TheVPC/PublicSubnet1/DefaultRoute",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::EC2::Route",
+                      "aws:cdk:cloudformation:props": {
+                        "routeTableId": {
+                          "Ref": "TheVPCPublicSubnet1RouteTable17DA183D"
+                        },
+                        "destinationCidrBlock": "0.0.0.0/0",
+                        "gatewayId": {
+                          "Ref": "TheVPCIGWFA25CC08"
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "PublicSubnet2": {
+                "id": "PublicSubnet2",
+                "path": "CdkWorkshopStack/TheVPC/PublicSubnet2",
+                "children": {
+                  "Subnet": {
+                    "id": "Subnet",
+                    "path": "CdkWorkshopStack/TheVPC/PublicSubnet2/Subnet",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::EC2::Subnet",
+                      "aws:cdk:cloudformation:props": {
+                        "cidrBlock": "10.0.64.0/18",
+                        "vpcId": {
+                          "Ref": "TheVPC92636AB0"
+                        },
+                        "availabilityZone": {
+                          "Fn::Select": [
+                            1,
+                            {
+                              "Fn::GetAZs": ""
+                            }
+                          ]
+                        },
+                        "mapPublicIpOnLaunch": true,
+                        "tags": [
+                          {
+                            "key": "aws-cdk:subnet-name",
+                            "value": "Public"
+                          },
+                          {
+                            "key": "aws-cdk:subnet-type",
+                            "value": "Public"
+                          },
+                          {
+                            "key": "Name",
+                            "value": "CdkWorkshopStack/TheVPC/PublicSubnet2"
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  "Acl": {
+                    "id": "Acl",
+                    "path": "CdkWorkshopStack/TheVPC/PublicSubnet2/Acl"
+                  },
+                  "RouteTable": {
+                    "id": "RouteTable",
+                    "path": "CdkWorkshopStack/TheVPC/PublicSubnet2/RouteTable",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::EC2::RouteTable",
+                      "aws:cdk:cloudformation:props": {
+                        "vpcId": {
+                          "Ref": "TheVPC92636AB0"
+                        },
+                        "tags": [
+                          {
+                            "key": "Name",
+                            "value": "CdkWorkshopStack/TheVPC/PublicSubnet2"
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  "RouteTableAssociation": {
+                    "id": "RouteTableAssociation",
+                    "path": "CdkWorkshopStack/TheVPC/PublicSubnet2/RouteTableAssociation",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::EC2::SubnetRouteTableAssociation",
+                      "aws:cdk:cloudformation:props": {
+                        "routeTableId": {
+                          "Ref": "TheVPCPublicSubnet2RouteTable3609F42C"
+                        },
+                        "subnetId": {
+                          "Ref": "TheVPCPublicSubnet2Subnet73F96DA9"
+                        }
+                      }
+                    }
+                  },
+                  "DefaultRoute": {
+                    "id": "DefaultRoute",
+                    "path": "CdkWorkshopStack/TheVPC/PublicSubnet2/DefaultRoute",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::EC2::Route",
+                      "aws:cdk:cloudformation:props": {
+                        "routeTableId": {
+                          "Ref": "TheVPCPublicSubnet2RouteTable3609F42C"
+                        },
+                        "destinationCidrBlock": "0.0.0.0/0",
+                        "gatewayId": {
+                          "Ref": "TheVPCIGWFA25CC08"
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "IsolatedSubnet1": {
+                "id": "IsolatedSubnet1",
+                "path": "CdkWorkshopStack/TheVPC/IsolatedSubnet1",
+                "children": {
+                  "Subnet": {
+                    "id": "Subnet",
+                    "path": "CdkWorkshopStack/TheVPC/IsolatedSubnet1/Subnet",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::EC2::Subnet",
+                      "aws:cdk:cloudformation:props": {
+                        "cidrBlock": "10.0.128.0/18",
+                        "vpcId": {
+                          "Ref": "TheVPC92636AB0"
+                        },
+                        "availabilityZone": {
+                          "Fn::Select": [
+                            0,
+                            {
+                              "Fn::GetAZs": ""
+                            }
+                          ]
+                        },
+                        "mapPublicIpOnLaunch": false,
+                        "tags": [
+                          {
+                            "key": "aws-cdk:subnet-name",
+                            "value": "Isolated"
+                          },
+                          {
+                            "key": "aws-cdk:subnet-type",
+                            "value": "Isolated"
+                          },
+                          {
+                            "key": "Name",
+                            "value": "CdkWorkshopStack/TheVPC/IsolatedSubnet1"
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  "Acl": {
+                    "id": "Acl",
+                    "path": "CdkWorkshopStack/TheVPC/IsolatedSubnet1/Acl"
+                  },
+                  "RouteTable": {
+                    "id": "RouteTable",
+                    "path": "CdkWorkshopStack/TheVPC/IsolatedSubnet1/RouteTable",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::EC2::RouteTable",
+                      "aws:cdk:cloudformation:props": {
+                        "vpcId": {
+                          "Ref": "TheVPC92636AB0"
+                        },
+                        "tags": [
+                          {
+                            "key": "Name",
+                            "value": "CdkWorkshopStack/TheVPC/IsolatedSubnet1"
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  "RouteTableAssociation": {
+                    "id": "RouteTableAssociation",
+                    "path": "CdkWorkshopStack/TheVPC/IsolatedSubnet1/RouteTableAssociation",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::EC2::SubnetRouteTableAssociation",
+                      "aws:cdk:cloudformation:props": {
+                        "routeTableId": {
+                          "Ref": "TheVPCIsolatedSubnet1RouteTable8FA5B31C"
+                        },
+                        "subnetId": {
+                          "Ref": "TheVPCIsolatedSubnet1SubnetCC3EE328"
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "IsolatedSubnet2": {
+                "id": "IsolatedSubnet2",
+                "path": "CdkWorkshopStack/TheVPC/IsolatedSubnet2",
+                "children": {
+                  "Subnet": {
+                    "id": "Subnet",
+                    "path": "CdkWorkshopStack/TheVPC/IsolatedSubnet2/Subnet",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::EC2::Subnet",
+                      "aws:cdk:cloudformation:props": {
+                        "cidrBlock": "10.0.192.0/18",
+                        "vpcId": {
+                          "Ref": "TheVPC92636AB0"
+                        },
+                        "availabilityZone": {
+                          "Fn::Select": [
+                            1,
+                            {
+                              "Fn::GetAZs": ""
+                            }
+                          ]
+                        },
+                        "mapPublicIpOnLaunch": false,
+                        "tags": [
+                          {
+                            "key": "aws-cdk:subnet-name",
+                            "value": "Isolated"
+                          },
+                          {
+                            "key": "aws-cdk:subnet-type",
+                            "value": "Isolated"
+                          },
+                          {
+                            "key": "Name",
+                            "value": "CdkWorkshopStack/TheVPC/IsolatedSubnet2"
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  "Acl": {
+                    "id": "Acl",
+                    "path": "CdkWorkshopStack/TheVPC/IsolatedSubnet2/Acl"
+                  },
+                  "RouteTable": {
+                    "id": "RouteTable",
+                    "path": "CdkWorkshopStack/TheVPC/IsolatedSubnet2/RouteTable",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::EC2::RouteTable",
+                      "aws:cdk:cloudformation:props": {
+                        "vpcId": {
+                          "Ref": "TheVPC92636AB0"
+                        },
+                        "tags": [
+                          {
+                            "key": "Name",
+                            "value": "CdkWorkshopStack/TheVPC/IsolatedSubnet2"
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  "RouteTableAssociation": {
+                    "id": "RouteTableAssociation",
+                    "path": "CdkWorkshopStack/TheVPC/IsolatedSubnet2/RouteTableAssociation",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::EC2::SubnetRouteTableAssociation",
+                      "aws:cdk:cloudformation:props": {
+                        "routeTableId": {
+                          "Ref": "TheVPCIsolatedSubnet2RouteTableB18E313E"
+                        },
+                        "subnetId": {
+                          "Ref": "TheVPCIsolatedSubnet2Subnet96816D61"
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "IGW": {
+                "id": "IGW",
+                "path": "CdkWorkshopStack/TheVPC/IGW",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::EC2::InternetGateway",
+                  "aws:cdk:cloudformation:props": {
+                    "tags": [
+                      {
+                        "key": "Name",
+                        "value": "CdkWorkshopStack/TheVPC"
+                      }
+                    ]
+                  }
+                }
+              },
+              "VPCGW": {
+                "id": "VPCGW",
+                "path": "CdkWorkshopStack/TheVPC/VPCGW",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::EC2::VPCGatewayAttachment",
+                  "aws:cdk:cloudformation:props": {
+                    "vpcId": {
+                      "Ref": "TheVPC92636AB0"
+                    },
+                    "internetGatewayId": {
+                      "Ref": "TheVPCIGWFA25CC08"
+                    }
+                  }
+                }
+              }
+            }
+          },
           "Endpoint": {
             "id": "Endpoint",
             "path": "CdkWorkshopStack/Endpoint",

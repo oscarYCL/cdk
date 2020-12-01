@@ -3,6 +3,7 @@ import * as lambda from '@aws-cdk/aws-lambda';
 import * as apigw from '@aws-cdk/aws-apigateway';
 import { HitCounter } from './hitcounter';
 import { TableViewer } from 'cdk-dynamo-table-viewer';
+import * as ec2 from '@aws-cdk/aws-ec2';
 
 export class CdkWorkshopStack extends cdk.Stack {
   constructor(scope: cdk.App, id: string, props?: cdk.StackProps) {
@@ -17,7 +18,12 @@ export class CdkWorkshopStack extends cdk.Stack {
     const helloWithCounter = new HitCounter(this, 'HelloHitCounter', {
       downstream: hello
     });
-
+    
+    const vpc = new ec2.Vpc(this, 'TheVPC', {
+   cidr: "10.0.0.0/16",
+   maxAzs: 2,
+   natGateways: 0
+   })
     // defines an API Gateway REST API resource backed by our "hello" function.
     new apigw.LambdaRestApi(this, 'Endpoint', {
       handler: helloWithCounter.handler
