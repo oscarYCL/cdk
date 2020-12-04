@@ -1827,6 +1827,284 @@
               }
             }
           },
+          "SNSTopic": {
+            "id": "SNSTopic",
+            "path": "CdkWorkshopStack/SNSTopic",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "CdkWorkshopStack/SNSTopic/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::SNS::Topic",
+                  "aws:cdk:cloudformation:props": {}
+                }
+              }
+            }
+          },
+          "queue": {
+            "id": "queue",
+            "path": "CdkWorkshopStack/queue",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "CdkWorkshopStack/queue/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::SQS::Queue",
+                  "aws:cdk:cloudformation:props": {}
+                }
+              },
+              "Policy": {
+                "id": "Policy",
+                "path": "CdkWorkshopStack/queue/Policy",
+                "children": {
+                  "Resource": {
+                    "id": "Resource",
+                    "path": "CdkWorkshopStack/queue/Policy/Resource",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::SQS::QueuePolicy",
+                      "aws:cdk:cloudformation:props": {
+                        "policyDocument": {
+                          "Statement": [
+                            {
+                              "Action": "sqs:SendMessage",
+                              "Condition": {
+                                "ArnEquals": {
+                                  "aws:SourceArn": {
+                                    "Ref": "SNSTopicBCCC5DD8"
+                                  }
+                                }
+                              },
+                              "Effect": "Allow",
+                              "Principal": {
+                                "Service": "sns.amazonaws.com"
+                              },
+                              "Resource": {
+                                "Fn::GetAtt": [
+                                  "queue276F7297",
+                                  "Arn"
+                                ]
+                              }
+                            }
+                          ],
+                          "Version": "2012-10-17"
+                        },
+                        "queues": [
+                          {
+                            "Ref": "queue276F7297"
+                          }
+                        ]
+                      }
+                    }
+                  }
+                }
+              },
+              "CdkWorkshopStackSNSTopicB1B1B7D6": {
+                "id": "CdkWorkshopStackSNSTopicB1B1B7D6",
+                "path": "CdkWorkshopStack/queue/CdkWorkshopStackSNSTopicB1B1B7D6",
+                "children": {
+                  "Resource": {
+                    "id": "Resource",
+                    "path": "CdkWorkshopStack/queue/CdkWorkshopStackSNSTopicB1B1B7D6/Resource",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::SNS::Subscription",
+                      "aws:cdk:cloudformation:props": {
+                        "protocol": "sqs",
+                        "topicArn": {
+                          "Ref": "SNSTopicBCCC5DD8"
+                        },
+                        "endpoint": {
+                          "Fn::GetAtt": [
+                            "queue276F7297",
+                            "Arn"
+                          ]
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "MyQueue": {
+            "id": "MyQueue",
+            "path": "CdkWorkshopStack/MyQueue",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "CdkWorkshopStack/MyQueue/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::SQS::Queue",
+                  "aws:cdk:cloudformation:props": {}
+                }
+              }
+            }
+          },
+          "mysql-rds-instance": {
+            "id": "mysql-rds-instance",
+            "path": "CdkWorkshopStack/mysql-rds-instance",
+            "children": {
+              "SubnetGroup": {
+                "id": "SubnetGroup",
+                "path": "CdkWorkshopStack/mysql-rds-instance/SubnetGroup",
+                "children": {
+                  "Default": {
+                    "id": "Default",
+                    "path": "CdkWorkshopStack/mysql-rds-instance/SubnetGroup/Default",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::RDS::DBSubnetGroup",
+                      "aws:cdk:cloudformation:props": {
+                        "dbSubnetGroupDescription": "Subnet group for mysql-rds-instance database",
+                        "subnetIds": [
+                          {
+                            "Ref": "TheVPCIsolatedSubnet1SubnetCC3EE328"
+                          },
+                          {
+                            "Ref": "TheVPCIsolatedSubnet2Subnet96816D61"
+                          }
+                        ]
+                      }
+                    }
+                  }
+                }
+              },
+              "SecurityGroup": {
+                "id": "SecurityGroup",
+                "path": "CdkWorkshopStack/mysql-rds-instance/SecurityGroup",
+                "children": {
+                  "Resource": {
+                    "id": "Resource",
+                    "path": "CdkWorkshopStack/mysql-rds-instance/SecurityGroup/Resource",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::EC2::SecurityGroup",
+                      "aws:cdk:cloudformation:props": {
+                        "groupDescription": "Security group for mysql-rds-instance database",
+                        "securityGroupEgress": [
+                          {
+                            "cidrIp": "0.0.0.0/0",
+                            "description": "Allow all outbound traffic by default",
+                            "ipProtocol": "-1"
+                          }
+                        ],
+                        "vpcId": {
+                          "Ref": "TheVPC92636AB0"
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "Secret": {
+                "id": "Secret",
+                "path": "CdkWorkshopStack/mysql-rds-instance/Secret",
+                "children": {
+                  "Resource": {
+                    "id": "Resource",
+                    "path": "CdkWorkshopStack/mysql-rds-instance/Secret/Resource",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::SecretsManager::Secret",
+                      "aws:cdk:cloudformation:props": {
+                        "description": {
+                          "Fn::Join": [
+                            "",
+                            [
+                              "Generated by the CDK for stack: ",
+                              {
+                                "Ref": "AWS::StackName"
+                              }
+                            ]
+                          ]
+                        },
+                        "generateSecretString": {
+                          "passwordLength": 30,
+                          "secretStringTemplate": "{\"username\":\"admin\"}",
+                          "generateStringKey": "password",
+                          "excludeCharacters": " %+~`#$&*()|[]{}:;<>?!'/@\"\\"
+                        }
+                      }
+                    }
+                  },
+                  "Attachment": {
+                    "id": "Attachment",
+                    "path": "CdkWorkshopStack/mysql-rds-instance/Secret/Attachment",
+                    "children": {
+                      "Resource": {
+                        "id": "Resource",
+                        "path": "CdkWorkshopStack/mysql-rds-instance/Secret/Attachment/Resource",
+                        "attributes": {
+                          "aws:cdk:cloudformation:type": "AWS::SecretsManager::SecretTargetAttachment",
+                          "aws:cdk:cloudformation:props": {
+                            "secretId": {
+                              "Ref": "mysqlrdsinstanceSecret97B2B2D2"
+                            },
+                            "targetId": {
+                              "Ref": "mysqlrdsinstance67C7D162"
+                            },
+                            "targetType": "AWS::RDS::DBInstance"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "Resource": {
+                "id": "Resource",
+                "path": "CdkWorkshopStack/mysql-rds-instance/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::RDS::DBInstance",
+                  "aws:cdk:cloudformation:props": {
+                    "dbInstanceClass": "db.t3.medium",
+                    "allocatedStorage": "25",
+                    "autoMinorVersionUpgrade": false,
+                    "copyTagsToSnapshot": true,
+                    "dbName": "mydb",
+                    "dbSubnetGroupName": {
+                      "Ref": "mysqlrdsinstanceSubnetGroupE26509B1"
+                    },
+                    "deletionProtection": false,
+                    "engine": "mysql",
+                    "masterUsername": {
+                      "Fn::Join": [
+                        "",
+                        [
+                          "{{resolve:secretsmanager:",
+                          {
+                            "Ref": "mysqlrdsinstanceSecret97B2B2D2"
+                          },
+                          ":SecretString:username::}}"
+                        ]
+                      ]
+                    },
+                    "masterUserPassword": {
+                      "Fn::Join": [
+                        "",
+                        [
+                          "{{resolve:secretsmanager:",
+                          {
+                            "Ref": "mysqlrdsinstanceSecret97B2B2D2"
+                          },
+                          ":SecretString:password::}}"
+                        ]
+                      ]
+                    },
+                    "multiAz": false,
+                    "port": "3306",
+                    "publiclyAccessible": false,
+                    "storageEncrypted": true,
+                    "storageType": "gp2",
+                    "vpcSecurityGroups": [
+                      {
+                        "Fn::GetAtt": [
+                          "mysqlrdsinstanceSecurityGroup3BBC2351",
+                          "GroupId"
+                        ]
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          },
           "CDKMetadata": {
             "id": "CDKMetadata",
             "path": "CdkWorkshopStack/CDKMetadata",
