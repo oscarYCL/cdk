@@ -2054,14 +2054,16 @@
                   "aws:cdk:cloudformation:type": "AWS::RDS::DBInstance",
                   "aws:cdk:cloudformation:props": {
                     "dbInstanceClass": "db.t3.medium",
-                    "allocatedStorage": "25",
+                    "allocatedStorage": "10",
                     "autoMinorVersionUpgrade": false,
-                    "copyTagsToSnapshot": true,
-                    "dbName": "mydb",
+                    "copyTagsToSnapshot": false,
+                    "dbName": "cdk_project",
                     "dbSubnetGroupName": {
                       "Ref": "mysqlrdsinstanceSubnetGroupE26509B1"
                     },
+                    "deleteAutomatedBackups": false,
                     "deletionProtection": false,
+                    "enableIamDatabaseAuthentication": false,
                     "engine": "mysql",
                     "masterUsername": {
                       "Fn::Join": [
@@ -2087,7 +2089,7 @@
                         ]
                       ]
                     },
-                    "multiAz": false,
+                    "multiAz": true,
                     "port": "3306",
                     "publiclyAccessible": false,
                     "storageEncrypted": true,
@@ -2100,6 +2102,103 @@
                         ]
                       }
                     ]
+                  }
+                }
+              }
+            }
+          },
+          "ALBSecurityGroup1": {
+            "id": "ALBSecurityGroup1",
+            "path": "CdkWorkshopStack/ALBSecurityGroup1",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "CdkWorkshopStack/ALBSecurityGroup1/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::EC2::SecurityGroup",
+                  "aws:cdk:cloudformation:props": {
+                    "groupDescription": "CdkWorkshopStack/ALBSecurityGroup1",
+                    "securityGroupEgress": [
+                      {
+                        "cidrIp": "0.0.0.0/0",
+                        "description": "Allow all outbound traffic by default",
+                        "ipProtocol": "-1"
+                      }
+                    ],
+                    "vpcId": {
+                      "Ref": "TheVPC92636AB0"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "ALB_cdk": {
+            "id": "ALB_cdk",
+            "path": "CdkWorkshopStack/ALB_cdk",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "CdkWorkshopStack/ALB_cdk/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::ElasticLoadBalancingV2::LoadBalancer",
+                  "aws:cdk:cloudformation:props": {
+                    "loadBalancerAttributes": [
+                      {
+                        "key": "deletion_protection.enabled",
+                        "value": "false"
+                      }
+                    ],
+                    "scheme": "internet-facing",
+                    "securityGroups": [
+                      {
+                        "Fn::GetAtt": [
+                          "ALBSecurityGroup1A906204D",
+                          "GroupId"
+                        ]
+                      },
+                      {
+                        "Fn::GetAtt": [
+                          "EC2SecurityGroup05DEE054",
+                          "GroupId"
+                        ]
+                      }
+                    ],
+                    "subnets": [
+                      {
+                        "Ref": "TheVPCPublicSubnet1Subnet770D4FF2"
+                      },
+                      {
+                        "Ref": "TheVPCPublicSubnet2Subnet73F96DA9"
+                      }
+                    ],
+                    "type": "application"
+                  }
+                }
+              }
+            }
+          },
+          "EC2SecurityGroup": {
+            "id": "EC2SecurityGroup",
+            "path": "CdkWorkshopStack/EC2SecurityGroup",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "CdkWorkshopStack/EC2SecurityGroup/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::EC2::SecurityGroup",
+                  "aws:cdk:cloudformation:props": {
+                    "groupDescription": "CdkWorkshopStack/EC2SecurityGroup",
+                    "securityGroupEgress": [
+                      {
+                        "cidrIp": "0.0.0.0/0",
+                        "description": "Allow all outbound traffic by default",
+                        "ipProtocol": "-1"
+                      }
+                    ],
+                    "vpcId": {
+                      "Ref": "TheVPC92636AB0"
+                    }
                   }
                 }
               }

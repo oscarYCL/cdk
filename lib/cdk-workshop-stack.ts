@@ -11,8 +11,7 @@ import { SqsSubscription } from "@aws-cdk/aws-sns-subscriptions";
 //import {DatabaseInstance, DatabaseInstanceEngine, StorageType} from '@aws-cdk/aws-rds';
 import * as rds from '@aws-cdk/aws-rds';
 import { DatabaseInstance, DatabaseInstanceEngine, StorageType } from "@aws-cdk/aws-rds";
-import { InstanceType, SubnetType, Vpc} from "@aws-cdk/aws-ec2";
-
+import * as elbv2 from '@aws-cdk/aws-elasticloadbalancingv2';
 export class CdkWorkshopStack extends cdk.Stack {
   constructor(scope: cdk.App, id: string, props?: cdk.StackProps) {
     super(scope, id, props);
@@ -54,20 +53,32 @@ export class CdkWorkshopStack extends cdk.Stack {
     engine: DatabaseInstanceEngine.MYSQL,
     instanceType: ec2.InstanceType.of(ec2.InstanceClass.BURSTABLE3, ec2.InstanceSize.MEDIUM),
     storageEncrypted: true,
-    multiAz: false,
+    multiAz: true,
     autoMinorVersionUpgrade: false,
-    allocatedStorage: 25,
+    allocatedStorage: 10,
     storageType: StorageType.GP2,
     deletionProtection: false,
     //masterUsername: 'Admin',
-    databaseName: 'mydb',
+    databaseName: 'cdk_project',
+    deleteAutomatedBackups: false,
+    copyTagsToSnapshot: false,
+    iamAuthentication: false,
     vpcSubnets: {
       subnetType: ec2.SubnetType.ISOLATED,
     },
     port: 3306,
     vpc
 });
+ 
+const securityGroup1 = new ec2.SecurityGroup(this, 'ALBSecurityGroup1', { vpc });
+const lb = new elbv2.ApplicationLoadBalancer(this, 'ALB_cdk', {
+  vpc,
+  internetFacing: true,
+  securityGroup: securityGroup1, 
+});
 
+const securityGroup2 = new ec2.SecurityGroup(this, 'EC2SecurityGroup', { vpc });
+lb.addSecurityGroup(securityGroup2);
 
 
   }

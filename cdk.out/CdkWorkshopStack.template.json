@@ -1656,14 +1656,16 @@
       "Type": "AWS::RDS::DBInstance",
       "Properties": {
         "DBInstanceClass": "db.t3.medium",
-        "AllocatedStorage": "25",
+        "AllocatedStorage": "10",
         "AutoMinorVersionUpgrade": false,
-        "CopyTagsToSnapshot": true,
-        "DBName": "mydb",
+        "CopyTagsToSnapshot": false,
+        "DBName": "cdk_project",
         "DBSubnetGroupName": {
           "Ref": "mysqlrdsinstanceSubnetGroupE26509B1"
         },
+        "DeleteAutomatedBackups": false,
         "DeletionProtection": false,
+        "EnableIAMDatabaseAuthentication": false,
         "Engine": "mysql",
         "MasterUsername": {
           "Fn::Join": [
@@ -1689,7 +1691,7 @@
             ]
           ]
         },
-        "MultiAZ": false,
+        "MultiAZ": true,
         "Port": "3306",
         "PubliclyAccessible": false,
         "StorageEncrypted": true,
@@ -1708,10 +1710,90 @@
         "aws:cdk:path": "CdkWorkshopStack/mysql-rds-instance/Resource"
       }
     },
+    "ALBSecurityGroup1A906204D": {
+      "Type": "AWS::EC2::SecurityGroup",
+      "Properties": {
+        "GroupDescription": "CdkWorkshopStack/ALBSecurityGroup1",
+        "SecurityGroupEgress": [
+          {
+            "CidrIp": "0.0.0.0/0",
+            "Description": "Allow all outbound traffic by default",
+            "IpProtocol": "-1"
+          }
+        ],
+        "VpcId": {
+          "Ref": "TheVPC92636AB0"
+        }
+      },
+      "Metadata": {
+        "aws:cdk:path": "CdkWorkshopStack/ALBSecurityGroup1/Resource"
+      }
+    },
+    "ALBcdk6DDC737F": {
+      "Type": "AWS::ElasticLoadBalancingV2::LoadBalancer",
+      "Properties": {
+        "LoadBalancerAttributes": [
+          {
+            "Key": "deletion_protection.enabled",
+            "Value": "false"
+          }
+        ],
+        "Scheme": "internet-facing",
+        "SecurityGroups": [
+          {
+            "Fn::GetAtt": [
+              "ALBSecurityGroup1A906204D",
+              "GroupId"
+            ]
+          },
+          {
+            "Fn::GetAtt": [
+              "EC2SecurityGroup05DEE054",
+              "GroupId"
+            ]
+          }
+        ],
+        "Subnets": [
+          {
+            "Ref": "TheVPCPublicSubnet1Subnet770D4FF2"
+          },
+          {
+            "Ref": "TheVPCPublicSubnet2Subnet73F96DA9"
+          }
+        ],
+        "Type": "application"
+      },
+      "DependsOn": [
+        "TheVPCPublicSubnet1DefaultRoute6D26543F",
+        "TheVPCPublicSubnet2DefaultRouteFEB062B2"
+      ],
+      "Metadata": {
+        "aws:cdk:path": "CdkWorkshopStack/ALB_cdk/Resource"
+      }
+    },
+    "EC2SecurityGroup05DEE054": {
+      "Type": "AWS::EC2::SecurityGroup",
+      "Properties": {
+        "GroupDescription": "CdkWorkshopStack/EC2SecurityGroup",
+        "SecurityGroupEgress": [
+          {
+            "CidrIp": "0.0.0.0/0",
+            "Description": "Allow all outbound traffic by default",
+            "IpProtocol": "-1"
+          }
+        ],
+        "VpcId": {
+          "Ref": "TheVPC92636AB0"
+        }
+      },
+      "Metadata": {
+        "aws:cdk:path": "CdkWorkshopStack/EC2SecurityGroup/Resource"
+      }
+    },
     "CDKMetadata": {
       "Type": "AWS::CDK::Metadata",
       "Properties": {
-        "Modules": "aws-cdk=1.75.0,@aws-cdk/assets=1.75.0,@aws-cdk/aws-apigateway=1.75.0,@aws-cdk/aws-applicationautoscaling=1.75.0,@aws-cdk/aws-autoscaling-common=1.75.0,@aws-cdk/aws-cloudwatch=1.75.0,@aws-cdk/aws-codeguruprofiler=1.75.0,@aws-cdk/aws-dynamodb=1.75.0,@aws-cdk/aws-ec2=1.75.0,@aws-cdk/aws-events=1.75.0,@aws-cdk/aws-iam=1.75.0,@aws-cdk/aws-kms=1.75.0,@aws-cdk/aws-lambda=1.75.0,@aws-cdk/aws-logs=1.75.0,@aws-cdk/aws-rds=1.75.0,@aws-cdk/aws-s3=1.75.0,@aws-cdk/aws-s3-assets=1.75.0,@aws-cdk/aws-sam=1.75.0,@aws-cdk/aws-secretsmanager=1.75.0,@aws-cdk/aws-sns=1.75.0,@aws-cdk/aws-sns-subscriptions=1.75.0,@aws-cdk/aws-sqs=1.75.0,@aws-cdk/aws-ssm=1.75.0,@aws-cdk/cloud-assembly-schema=1.75.0,@aws-cdk/core=1.75.0,@aws-cdk/custom-resources=1.75.0,@aws-cdk/cx-api=1.75.0,@aws-cdk/region-info=1.75.0,jsii-runtime=node.js/v15.3.0"
+        "Modules": "aws-cdk=1.76.0,@aws-cdk/assets=1.75.0,@aws-cdk/aws-apigateway=1.75.0,@aws-cdk/aws-applicationautoscaling=1.75.0,@aws-cdk/aws-autoscaling-common=1.75.0,@aws-cdk/aws-cloudwatch=1.75.0,@aws-cdk/aws-codeguruprofiler=1.75.0,@aws-cdk/aws-dynamodb=1.75.0,@aws-cdk/aws-ec2=1.75.0,@aws-cdk/aws-elasticloadbalancingv2=1.75.0,@aws-cdk/aws-events=1.75.0,@aws-cdk/aws-iam=1.75.0,@aws-cdk/aws-kms=1.75.0,@aws-cdk/aws-lambda=1.75.0,@aws-cdk/aws-logs=1.75.0,@aws-cdk/aws-rds=1.75.0,@aws-cdk/aws-s3=1.75.0,@aws-cdk/aws-s3-assets=1.75.0,@aws-cdk/aws-sam=1.75.0,@aws-cdk/aws-secretsmanager=1.75.0,@aws-cdk/aws-sns=1.75.0,@aws-cdk/aws-sns-subscriptions=1.75.0,@aws-cdk/aws-sqs=1.75.0,@aws-cdk/aws-ssm=1.75.0,@aws-cdk/cloud-assembly-schema=1.75.0,@aws-cdk/core=1.75.0,@aws-cdk/custom-resources=1.75.0,@aws-cdk/cx-api=1.75.0,@aws-cdk/region-info=1.75.0,jsii-runtime=node.js/v11.15.0"
       },
       "Metadata": {
         "aws:cdk:path": "CdkWorkshopStack/CDKMetadata/Default"
