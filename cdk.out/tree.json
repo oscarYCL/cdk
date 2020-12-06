@@ -79,7 +79,7 @@
                   "aws:cdk:cloudformation:props": {
                     "code": {
                       "s3Bucket": {
-                        "Ref": "AssetParameters744d4cd20a4927cde9111a84d88773a13193df8ea6e75bb0619e25889c3713fbS3Bucket5A450149"
+                        "Ref": "AssetParameters8ef73fd9c116e4c63eeed7611e5ef03ee7a16bf7b53cbd63c09dd613f03a417dS3Bucket8078D3F9"
                       },
                       "s3Key": {
                         "Fn::Join": [
@@ -92,7 +92,7 @@
                                   "Fn::Split": [
                                     "||",
                                     {
-                                      "Ref": "AssetParameters744d4cd20a4927cde9111a84d88773a13193df8ea6e75bb0619e25889c3713fbS3VersionKey6324A272"
+                                      "Ref": "AssetParameters8ef73fd9c116e4c63eeed7611e5ef03ee7a16bf7b53cbd63c09dd613f03a417dS3VersionKey3565762B"
                                     }
                                   ]
                                 }
@@ -105,7 +105,7 @@
                                   "Fn::Split": [
                                     "||",
                                     {
-                                      "Ref": "AssetParameters744d4cd20a4927cde9111a84d88773a13193df8ea6e75bb0619e25889c3713fbS3VersionKey6324A272"
+                                      "Ref": "AssetParameters8ef73fd9c116e4c63eeed7611e5ef03ee7a16bf7b53cbd63c09dd613f03a417dS3VersionKey3565762B"
                                     }
                                   ]
                                 }
@@ -132,21 +132,21 @@
             "id": "AssetParameters",
             "path": "CdkWorkshopStack/AssetParameters",
             "children": {
-              "744d4cd20a4927cde9111a84d88773a13193df8ea6e75bb0619e25889c3713fb": {
-                "id": "744d4cd20a4927cde9111a84d88773a13193df8ea6e75bb0619e25889c3713fb",
-                "path": "CdkWorkshopStack/AssetParameters/744d4cd20a4927cde9111a84d88773a13193df8ea6e75bb0619e25889c3713fb",
+              "8ef73fd9c116e4c63eeed7611e5ef03ee7a16bf7b53cbd63c09dd613f03a417d": {
+                "id": "8ef73fd9c116e4c63eeed7611e5ef03ee7a16bf7b53cbd63c09dd613f03a417d",
+                "path": "CdkWorkshopStack/AssetParameters/8ef73fd9c116e4c63eeed7611e5ef03ee7a16bf7b53cbd63c09dd613f03a417d",
                 "children": {
                   "S3Bucket": {
                     "id": "S3Bucket",
-                    "path": "CdkWorkshopStack/AssetParameters/744d4cd20a4927cde9111a84d88773a13193df8ea6e75bb0619e25889c3713fb/S3Bucket"
+                    "path": "CdkWorkshopStack/AssetParameters/8ef73fd9c116e4c63eeed7611e5ef03ee7a16bf7b53cbd63c09dd613f03a417d/S3Bucket"
                   },
                   "S3VersionKey": {
                     "id": "S3VersionKey",
-                    "path": "CdkWorkshopStack/AssetParameters/744d4cd20a4927cde9111a84d88773a13193df8ea6e75bb0619e25889c3713fb/S3VersionKey"
+                    "path": "CdkWorkshopStack/AssetParameters/8ef73fd9c116e4c63eeed7611e5ef03ee7a16bf7b53cbd63c09dd613f03a417d/S3VersionKey"
                   },
                   "ArtifactHash": {
                     "id": "ArtifactHash",
-                    "path": "CdkWorkshopStack/AssetParameters/744d4cd20a4927cde9111a84d88773a13193df8ea6e75bb0619e25889c3713fb/ArtifactHash"
+                    "path": "CdkWorkshopStack/AssetParameters/8ef73fd9c116e4c63eeed7611e5ef03ee7a16bf7b53cbd63c09dd613f03a417d/ArtifactHash"
                   }
                 }
               },
@@ -338,7 +338,7 @@
                       "aws:cdk:cloudformation:props": {
                         "code": {
                           "s3Bucket": {
-                            "Ref": "AssetParameters744d4cd20a4927cde9111a84d88773a13193df8ea6e75bb0619e25889c3713fbS3Bucket5A450149"
+                            "Ref": "AssetParameters8ef73fd9c116e4c63eeed7611e5ef03ee7a16bf7b53cbd63c09dd613f03a417dS3Bucket8078D3F9"
                           },
                           "s3Key": {
                             "Fn::Join": [
@@ -351,7 +351,7 @@
                                       "Fn::Split": [
                                         "||",
                                         {
-                                          "Ref": "AssetParameters744d4cd20a4927cde9111a84d88773a13193df8ea6e75bb0619e25889c3713fbS3VersionKey6324A272"
+                                          "Ref": "AssetParameters8ef73fd9c116e4c63eeed7611e5ef03ee7a16bf7b53cbd63c09dd613f03a417dS3VersionKey3565762B"
                                         }
                                       ]
                                     }
@@ -364,7 +364,7 @@
                                       "Fn::Split": [
                                         "||",
                                         {
-                                          "Ref": "AssetParameters744d4cd20a4927cde9111a84d88773a13193df8ea6e75bb0619e25889c3713fbS3VersionKey6324A272"
+                                          "Ref": "AssetParameters8ef73fd9c116e4c63eeed7611e5ef03ee7a16bf7b53cbd63c09dd613f03a417dS3VersionKey3565762B"
                                         }
                                       ]
                                     }
@@ -2107,22 +2107,38 @@
               }
             }
           },
-          "ALBSecurityGroup1": {
-            "id": "ALBSecurityGroup1",
-            "path": "CdkWorkshopStack/ALBSecurityGroup1",
+          "ALBSecurityGroup": {
+            "id": "ALBSecurityGroup",
+            "path": "CdkWorkshopStack/ALBSecurityGroup",
             "children": {
               "Resource": {
                 "id": "Resource",
-                "path": "CdkWorkshopStack/ALBSecurityGroup1/Resource",
+                "path": "CdkWorkshopStack/ALBSecurityGroup/Resource",
                 "attributes": {
                   "aws:cdk:cloudformation:type": "AWS::EC2::SecurityGroup",
                   "aws:cdk:cloudformation:props": {
-                    "groupDescription": "CdkWorkshopStack/ALBSecurityGroup1",
+                    "groupDescription": "CdkWorkshopStack/ALBSecurityGroup",
                     "securityGroupEgress": [
                       {
                         "cidrIp": "0.0.0.0/0",
                         "description": "Allow all outbound traffic by default",
                         "ipProtocol": "-1"
+                      }
+                    ],
+                    "securityGroupIngress": [
+                      {
+                        "cidrIp": "0.0.0.0/0",
+                        "ipProtocol": "tcp",
+                        "fromPort": 443,
+                        "toPort": 443,
+                        "description": "from 0.0.0.0/0:443"
+                      },
+                      {
+                        "cidrIp": "0.0.0.0/0",
+                        "ipProtocol": "tcp",
+                        "fromPort": 80,
+                        "toPort": 80,
+                        "description": "from 0.0.0.0/0:80"
                       }
                     ],
                     "vpcId": {
@@ -2153,7 +2169,7 @@
                     "securityGroups": [
                       {
                         "Fn::GetAtt": [
-                          "ALBSecurityGroup1A906204D",
+                          "ALBSecurityGroup29A3BDEF",
                           "GroupId"
                         ]
                       },
@@ -2194,6 +2210,22 @@
                         "cidrIp": "0.0.0.0/0",
                         "description": "Allow all outbound traffic by default",
                         "ipProtocol": "-1"
+                      }
+                    ],
+                    "securityGroupIngress": [
+                      {
+                        "cidrIp": "0.0.0.0/0",
+                        "ipProtocol": "tcp",
+                        "fromPort": 443,
+                        "toPort": 443,
+                        "description": "from 0.0.0.0/0:443"
+                      },
+                      {
+                        "cidrIp": "0.0.0.0/0",
+                        "ipProtocol": "tcp",
+                        "fromPort": 80,
+                        "toPort": 80,
+                        "description": "from 0.0.0.0/0:80"
                       }
                     ],
                     "vpcId": {

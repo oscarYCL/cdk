@@ -12,6 +12,7 @@ import { SqsSubscription } from "@aws-cdk/aws-sns-subscriptions";
 import * as rds from '@aws-cdk/aws-rds';
 import { DatabaseInstance, DatabaseInstanceEngine, StorageType } from "@aws-cdk/aws-rds";
 import * as elbv2 from '@aws-cdk/aws-elasticloadbalancingv2';
+
 export class CdkWorkshopStack extends cdk.Stack {
   constructor(scope: cdk.App, id: string, props?: cdk.StackProps) {
     super(scope, id, props);
@@ -27,11 +28,41 @@ export class CdkWorkshopStack extends cdk.Stack {
     });
     
     const vpc = new ec2.Vpc(this, 'TheVPC', {
-   cidr: "10.0.0.0/16",
-   maxAzs: 2,
-   natGateways: 0,
-  
-   })
+     cidr: "10.0.0.0/16",
+     maxAzs: 2,
+     natGateways: 0, //shcool ac can not create natGateway   natGateways: 2
+     /*
+     subnetConfiguration: [         //since can not create natgateway the subnet can not config
+        {
+          cidrMask: 24,
+          name: 'public subnet1',
+          subnetType: ec2.SubnetType.PUBLIC,
+        },
+        {
+          cidrMask: 24,
+          name: 'public subnet2',
+          subnetType: ec2.SubnetType.PUBLIC,
+        },
+        {
+          cidrMask: 22,
+          name: 'private subnet1',
+          subnetType: ec2.SubnetType.PRIVATE,
+        },
+        {
+          cidrMask: 22,
+          name: 'private subnet2',
+          subnetType: ec2.SubnetType.PRIVATE,
+        },
+        {
+          cidrMask: 28,
+          name: 'isolated subnet',
+          subnetType: ec2.SubnetType.ISOLATED,
+        }
+        
+      
+      ],*/
+   });
+   
     // defines an API Gateway REST API resource backed by our "hello" function.
     new apigw.LambdaRestApi(this, 'Endpoint', {
       handler: helloWithCounter.handler
@@ -41,6 +72,8 @@ export class CdkWorkshopStack extends cdk.Stack {
       title: 'Hello Hits',
       table: helloWithCounter.table
     });
+    
+    
      const topic = new sns.Topic(
       this,
       "SNSTopic",
@@ -70,17 +103,26 @@ export class CdkWorkshopStack extends cdk.Stack {
     vpc
 });
  
-const securityGroup1 = new ec2.SecurityGroup(this, 'ALBSecurityGroup1', { vpc });
+const albsg = new ec2.SecurityGroup(this, 'ALBSecurityGroup', { vpc });
 const lb = new elbv2.ApplicationLoadBalancer(this, 'ALB_cdk', {
   vpc,
   internetFacing: true,
-  securityGroup: securityGroup1, 
+  securityGroup: albsg, 
 });
 
 const securityGroup2 = new ec2.SecurityGroup(this, 'EC2SecurityGroup', { vpc });
-lb.addSecurityGroup(securityGroup2);
+  lb.addSecurityGroup(securityGroup2);
+  albsg.addIngressRule(ec2.Peer.ipv4('0.0.0.0/0'), ec2.Port.tcp(443));
+  albsg.addIngressRule(ec2.Peer.ipv4('0.0.0.0/0'), ec2.Port.tcp(80));
+  securityGroup2.addIngressRule(ec2.Peer.ipv4('0.0.0.0/0'), ec2.Port.tcp(443));
+  securityGroup2.addIngressRule(ec2.Peer.ipv4('0.0.0.0/0'), ec2.Port.tcp(80));
+
+//const autoscaling1 = new autoscaling.AutoScalingGroup(this, 'ASG', {
+  //vpc,
+  //InstanceType: ec2.InstanceType.of(ec2.InstanceClass.BURSTABLE2, ec2.InstanceSize.MICRO),
+  //MachineImage: new ec2.AmazonLinuxImage() // get the latest Amazon Linux image
+//});
 
 
   }
 }
-

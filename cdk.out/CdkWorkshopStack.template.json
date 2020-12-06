@@ -39,7 +39,7 @@
       "Properties": {
         "Code": {
           "S3Bucket": {
-            "Ref": "AssetParameters744d4cd20a4927cde9111a84d88773a13193df8ea6e75bb0619e25889c3713fbS3Bucket5A450149"
+            "Ref": "AssetParameters8ef73fd9c116e4c63eeed7611e5ef03ee7a16bf7b53cbd63c09dd613f03a417dS3Bucket8078D3F9"
           },
           "S3Key": {
             "Fn::Join": [
@@ -52,7 +52,7 @@
                       "Fn::Split": [
                         "||",
                         {
-                          "Ref": "AssetParameters744d4cd20a4927cde9111a84d88773a13193df8ea6e75bb0619e25889c3713fbS3VersionKey6324A272"
+                          "Ref": "AssetParameters8ef73fd9c116e4c63eeed7611e5ef03ee7a16bf7b53cbd63c09dd613f03a417dS3VersionKey3565762B"
                         }
                       ]
                     }
@@ -65,7 +65,7 @@
                       "Fn::Split": [
                         "||",
                         {
-                          "Ref": "AssetParameters744d4cd20a4927cde9111a84d88773a13193df8ea6e75bb0619e25889c3713fbS3VersionKey6324A272"
+                          "Ref": "AssetParameters8ef73fd9c116e4c63eeed7611e5ef03ee7a16bf7b53cbd63c09dd613f03a417dS3VersionKey3565762B"
                         }
                       ]
                     }
@@ -89,7 +89,7 @@
       ],
       "Metadata": {
         "aws:cdk:path": "CdkWorkshopStack/HelloHandler/Resource",
-        "aws:asset:path": "asset.744d4cd20a4927cde9111a84d88773a13193df8ea6e75bb0619e25889c3713fb",
+        "aws:asset:path": "asset.8ef73fd9c116e4c63eeed7611e5ef03ee7a16bf7b53cbd63c09dd613f03a417d",
         "aws:asset:property": "Code"
       }
     },
@@ -213,7 +213,7 @@
       "Properties": {
         "Code": {
           "S3Bucket": {
-            "Ref": "AssetParameters744d4cd20a4927cde9111a84d88773a13193df8ea6e75bb0619e25889c3713fbS3Bucket5A450149"
+            "Ref": "AssetParameters8ef73fd9c116e4c63eeed7611e5ef03ee7a16bf7b53cbd63c09dd613f03a417dS3Bucket8078D3F9"
           },
           "S3Key": {
             "Fn::Join": [
@@ -226,7 +226,7 @@
                       "Fn::Split": [
                         "||",
                         {
-                          "Ref": "AssetParameters744d4cd20a4927cde9111a84d88773a13193df8ea6e75bb0619e25889c3713fbS3VersionKey6324A272"
+                          "Ref": "AssetParameters8ef73fd9c116e4c63eeed7611e5ef03ee7a16bf7b53cbd63c09dd613f03a417dS3VersionKey3565762B"
                         }
                       ]
                     }
@@ -239,7 +239,7 @@
                       "Fn::Split": [
                         "||",
                         {
-                          "Ref": "AssetParameters744d4cd20a4927cde9111a84d88773a13193df8ea6e75bb0619e25889c3713fbS3VersionKey6324A272"
+                          "Ref": "AssetParameters8ef73fd9c116e4c63eeed7611e5ef03ee7a16bf7b53cbd63c09dd613f03a417dS3VersionKey3565762B"
                         }
                       ]
                     }
@@ -274,7 +274,7 @@
       ],
       "Metadata": {
         "aws:cdk:path": "CdkWorkshopStack/HelloHitCounter/HitCounterHandler/Resource",
-        "aws:asset:path": "asset.744d4cd20a4927cde9111a84d88773a13193df8ea6e75bb0619e25889c3713fb",
+        "aws:asset:path": "asset.8ef73fd9c116e4c63eeed7611e5ef03ee7a16bf7b53cbd63c09dd613f03a417d",
         "aws:asset:property": "Code"
       }
     },
@@ -1710,10 +1710,10 @@
         "aws:cdk:path": "CdkWorkshopStack/mysql-rds-instance/Resource"
       }
     },
-    "ALBSecurityGroup1A906204D": {
+    "ALBSecurityGroup29A3BDEF": {
       "Type": "AWS::EC2::SecurityGroup",
       "Properties": {
-        "GroupDescription": "CdkWorkshopStack/ALBSecurityGroup1",
+        "GroupDescription": "CdkWorkshopStack/ALBSecurityGroup",
         "SecurityGroupEgress": [
           {
             "CidrIp": "0.0.0.0/0",
@@ -1721,12 +1721,28 @@
             "IpProtocol": "-1"
           }
         ],
+        "SecurityGroupIngress": [
+          {
+            "CidrIp": "0.0.0.0/0",
+            "Description": "from 0.0.0.0/0:443",
+            "FromPort": 443,
+            "IpProtocol": "tcp",
+            "ToPort": 443
+          },
+          {
+            "CidrIp": "0.0.0.0/0",
+            "Description": "from 0.0.0.0/0:80",
+            "FromPort": 80,
+            "IpProtocol": "tcp",
+            "ToPort": 80
+          }
+        ],
         "VpcId": {
           "Ref": "TheVPC92636AB0"
         }
       },
       "Metadata": {
-        "aws:cdk:path": "CdkWorkshopStack/ALBSecurityGroup1/Resource"
+        "aws:cdk:path": "CdkWorkshopStack/ALBSecurityGroup/Resource"
       }
     },
     "ALBcdk6DDC737F": {
@@ -1742,7 +1758,7 @@
         "SecurityGroups": [
           {
             "Fn::GetAtt": [
-              "ALBSecurityGroup1A906204D",
+              "ALBSecurityGroup29A3BDEF",
               "GroupId"
             ]
           },
@@ -1782,6 +1798,22 @@
             "IpProtocol": "-1"
           }
         ],
+        "SecurityGroupIngress": [
+          {
+            "CidrIp": "0.0.0.0/0",
+            "Description": "from 0.0.0.0/0:443",
+            "FromPort": 443,
+            "IpProtocol": "tcp",
+            "ToPort": 443
+          },
+          {
+            "CidrIp": "0.0.0.0/0",
+            "Description": "from 0.0.0.0/0:80",
+            "FromPort": 80,
+            "IpProtocol": "tcp",
+            "ToPort": 80
+          }
+        ],
         "VpcId": {
           "Ref": "TheVPC92636AB0"
         }
@@ -1793,7 +1825,7 @@
     "CDKMetadata": {
       "Type": "AWS::CDK::Metadata",
       "Properties": {
-        "Modules": "aws-cdk=1.76.0,@aws-cdk/assets=1.75.0,@aws-cdk/aws-apigateway=1.75.0,@aws-cdk/aws-applicationautoscaling=1.75.0,@aws-cdk/aws-autoscaling-common=1.75.0,@aws-cdk/aws-cloudwatch=1.75.0,@aws-cdk/aws-codeguruprofiler=1.75.0,@aws-cdk/aws-dynamodb=1.75.0,@aws-cdk/aws-ec2=1.75.0,@aws-cdk/aws-elasticloadbalancingv2=1.75.0,@aws-cdk/aws-events=1.75.0,@aws-cdk/aws-iam=1.75.0,@aws-cdk/aws-kms=1.75.0,@aws-cdk/aws-lambda=1.75.0,@aws-cdk/aws-logs=1.75.0,@aws-cdk/aws-rds=1.75.0,@aws-cdk/aws-s3=1.75.0,@aws-cdk/aws-s3-assets=1.75.0,@aws-cdk/aws-sam=1.75.0,@aws-cdk/aws-secretsmanager=1.75.0,@aws-cdk/aws-sns=1.75.0,@aws-cdk/aws-sns-subscriptions=1.75.0,@aws-cdk/aws-sqs=1.75.0,@aws-cdk/aws-ssm=1.75.0,@aws-cdk/cloud-assembly-schema=1.75.0,@aws-cdk/core=1.75.0,@aws-cdk/custom-resources=1.75.0,@aws-cdk/cx-api=1.75.0,@aws-cdk/region-info=1.75.0,jsii-runtime=node.js/v11.15.0"
+        "Modules": "aws-cdk=1.75.0,@aws-cdk/assets=1.75.0,@aws-cdk/aws-apigateway=1.75.0,@aws-cdk/aws-applicationautoscaling=1.75.0,@aws-cdk/aws-autoscaling-common=1.75.0,@aws-cdk/aws-cloudwatch=1.75.0,@aws-cdk/aws-codeguruprofiler=1.75.0,@aws-cdk/aws-dynamodb=1.75.0,@aws-cdk/aws-ec2=1.75.0,@aws-cdk/aws-elasticloadbalancingv2=1.75.0,@aws-cdk/aws-events=1.75.0,@aws-cdk/aws-iam=1.75.0,@aws-cdk/aws-kms=1.75.0,@aws-cdk/aws-lambda=1.75.0,@aws-cdk/aws-logs=1.75.0,@aws-cdk/aws-rds=1.75.0,@aws-cdk/aws-s3=1.75.0,@aws-cdk/aws-s3-assets=1.75.0,@aws-cdk/aws-sam=1.75.0,@aws-cdk/aws-secretsmanager=1.75.0,@aws-cdk/aws-sns=1.75.0,@aws-cdk/aws-sns-subscriptions=1.75.0,@aws-cdk/aws-sqs=1.75.0,@aws-cdk/aws-ssm=1.75.0,@aws-cdk/cloud-assembly-schema=1.75.0,@aws-cdk/core=1.75.0,@aws-cdk/custom-resources=1.75.0,@aws-cdk/cx-api=1.75.0,@aws-cdk/region-info=1.75.0,jsii-runtime=node.js/v15.3.0"
       },
       "Metadata": {
         "aws:cdk:path": "CdkWorkshopStack/CDKMetadata/Default"
@@ -1802,17 +1834,17 @@
     }
   },
   "Parameters": {
-    "AssetParameters744d4cd20a4927cde9111a84d88773a13193df8ea6e75bb0619e25889c3713fbS3Bucket5A450149": {
+    "AssetParameters8ef73fd9c116e4c63eeed7611e5ef03ee7a16bf7b53cbd63c09dd613f03a417dS3Bucket8078D3F9": {
       "Type": "String",
-      "Description": "S3 bucket for asset \"744d4cd20a4927cde9111a84d88773a13193df8ea6e75bb0619e25889c3713fb\""
+      "Description": "S3 bucket for asset \"8ef73fd9c116e4c63eeed7611e5ef03ee7a16bf7b53cbd63c09dd613f03a417d\""
     },
-    "AssetParameters744d4cd20a4927cde9111a84d88773a13193df8ea6e75bb0619e25889c3713fbS3VersionKey6324A272": {
+    "AssetParameters8ef73fd9c116e4c63eeed7611e5ef03ee7a16bf7b53cbd63c09dd613f03a417dS3VersionKey3565762B": {
       "Type": "String",
-      "Description": "S3 key for asset version \"744d4cd20a4927cde9111a84d88773a13193df8ea6e75bb0619e25889c3713fb\""
+      "Description": "S3 key for asset version \"8ef73fd9c116e4c63eeed7611e5ef03ee7a16bf7b53cbd63c09dd613f03a417d\""
     },
-    "AssetParameters744d4cd20a4927cde9111a84d88773a13193df8ea6e75bb0619e25889c3713fbArtifactHashD2FE54E9": {
+    "AssetParameters8ef73fd9c116e4c63eeed7611e5ef03ee7a16bf7b53cbd63c09dd613f03a417dArtifactHash87187525": {
       "Type": "String",
-      "Description": "Artifact hash for asset \"744d4cd20a4927cde9111a84d88773a13193df8ea6e75bb0619e25889c3713fb\""
+      "Description": "Artifact hash for asset \"8ef73fd9c116e4c63eeed7611e5ef03ee7a16bf7b53cbd63c09dd613f03a417d\""
     },
     "AssetParametersca3eccc24c488dec9a89af5f5d51e4995df9b38d0124369a6442bdd4b1d2b681S3Bucket8D949544": {
       "Type": "String",
