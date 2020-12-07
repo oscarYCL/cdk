@@ -12,7 +12,7 @@ import { SqsSubscription } from "@aws-cdk/aws-sns-subscriptions";
 import * as rds from '@aws-cdk/aws-rds';
 import { DatabaseInstance, DatabaseInstanceEngine, StorageType } from "@aws-cdk/aws-rds";
 import * as elbv2 from '@aws-cdk/aws-elasticloadbalancingv2';
-
+import * as secretsManager from '@aws-cdk/aws-secretsmanager';
 export class CdkWorkshopStack extends cdk.Stack {
   constructor(scope: cdk.App, id: string, props?: cdk.StackProps) {
     super(scope, id, props);
@@ -102,6 +102,26 @@ export class CdkWorkshopStack extends cdk.Stack {
     port: 3306,
     vpc
 });
+ 
+const secrets = new secretsManager.Secret (this, 'Secret', {
+      description: "RDS Secret",
+      secretName: "RDSSecret",
+      generateSecretString: {
+        secretStringTemplate: JSON.stringify({}),
+        generateStringKey: "SECRET",
+      }
+    });
+const expected = {
+      engine: "mysql",
+      port: 3306,
+      username: "rdssecret",
+      password: "cdkrdssecretpassword",
+    };
+ 
+ 
+ 
+ 
+ 
  
 const albsg = new ec2.SecurityGroup(this, 'ALBSecurityGroup', { vpc });
 const lb = new elbv2.ApplicationLoadBalancer(this, 'ALB_cdk', {

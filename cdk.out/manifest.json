@@ -2064,7 +2064,7 @@
             "type": "aws:cdk:logicalId",
             "data": "mysqlrdsinstanceSecret97B2B2D2",
             "trace": [
-              "new Secret (/home/ec2-user/environment/cdk/node_modules/@aws-cdk/aws-secretsmanager/lib/secret.ts:421:22)",
+              "new Secret (/home/ec2-user/environment/cdk/node_modules/@aws-cdk/aws-rds/node_modules/@aws-cdk/aws-secretsmanager/lib/secret.ts:421:22)",
               "new DatabaseSecret (/home/ec2-user/environment/cdk/node_modules/@aws-cdk/aws-rds/lib/database-secret.ts:60:5)",
               "Object.renderCredentials (/home/ec2-user/environment/cdk/node_modules/@aws-cdk/aws-rds/lib/private/util.ts:104:7)",
               "new DatabaseInstance (/home/ec2-user/environment/cdk/node_modules/@aws-cdk/aws-rds/lib/instance.ts:950:25)",
@@ -2093,8 +2093,8 @@
             "type": "aws:cdk:logicalId",
             "data": "mysqlrdsinstanceSecretAttachment5724A13B",
             "trace": [
-              "new SecretTargetAttachment (/home/ec2-user/environment/cdk/node_modules/@aws-cdk/aws-secretsmanager/lib/secret.ts:600:24)",
-              "DatabaseSecret.attach (/home/ec2-user/environment/cdk/node_modules/@aws-cdk/aws-secretsmanager/lib/secret.ts:285:12)",
+              "new SecretTargetAttachment (/home/ec2-user/environment/cdk/node_modules/@aws-cdk/aws-rds/node_modules/@aws-cdk/aws-secretsmanager/lib/secret.ts:600:24)",
+              "DatabaseSecret.attach (/home/ec2-user/environment/cdk/node_modules/@aws-cdk/aws-rds/node_modules/@aws-cdk/aws-secretsmanager/lib/secret.ts:285:12)",
               "new DatabaseInstance (/home/ec2-user/environment/cdk/node_modules/@aws-cdk/aws-rds/lib/instance.ts:973:28)",
               "new CdkWorkshopStack (/home/ec2-user/environment/cdk/lib/cdk-workshop-stack.ts:85:17)",
               "Object.<anonymous> (/home/ec2-user/environment/cdk/bin/cdk-workshop.ts:6:1)",
@@ -2142,13 +2142,39 @@
             ]
           }
         ],
+        "/CdkWorkshopStack/Secret/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "SecretA720EF05",
+            "trace": [
+              "new Secret (/home/ec2-user/environment/cdk/node_modules/@aws-cdk/aws-secretsmanager/lib/secret.ts:421:22)",
+              "new CdkWorkshopStack (/home/ec2-user/environment/cdk/lib/cdk-workshop-stack.ts:106:17)",
+              "Object.<anonymous> (/home/ec2-user/environment/cdk/bin/cdk-workshop.ts:6:1)",
+              "Module._compile (node:internal/modules/cjs/loader:1102:14)",
+              "Module.m._compile (/home/ec2-user/environment/cdk/node_modules/ts-node/src/index.ts:1043:23)",
+              "Module._extensions..js (node:internal/modules/cjs/loader:1131:10)",
+              "Object.require.extensions.<computed> [as .ts] (/home/ec2-user/environment/cdk/node_modules/ts-node/src/index.ts:1046:12)",
+              "Module.load (node:internal/modules/cjs/loader:967:32)",
+              "Function.Module._load (node:internal/modules/cjs/loader:807:14)",
+              "Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:76:12)",
+              "main (/home/ec2-user/environment/cdk/node_modules/ts-node/src/bin.ts:225:14)",
+              "Object.<anonymous> (/home/ec2-user/environment/cdk/node_modules/ts-node/src/bin.ts:512:3)",
+              "Module._compile (node:internal/modules/cjs/loader:1102:14)",
+              "Object.Module._extensions..js (node:internal/modules/cjs/loader:1131:10)",
+              "Module.load (node:internal/modules/cjs/loader:967:32)",
+              "Function.Module._load (node:internal/modules/cjs/loader:807:14)",
+              "Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:76:12)",
+              "node:internal/main/run_main_module:17:47"
+            ]
+          }
+        ],
         "/CdkWorkshopStack/ALBSecurityGroup/Resource": [
           {
             "type": "aws:cdk:logicalId",
             "data": "ALBSecurityGroup29A3BDEF",
             "trace": [
               "new SecurityGroup (/home/ec2-user/environment/cdk/node_modules/@aws-cdk/aws-ec2/lib/security-group.ts:395:26)",
-              "new CdkWorkshopStack (/home/ec2-user/environment/cdk/lib/cdk-workshop-stack.ts:106:15)",
+              "new CdkWorkshopStack (/home/ec2-user/environment/cdk/lib/cdk-workshop-stack.ts:126:15)",
               "Object.<anonymous> (/home/ec2-user/environment/cdk/bin/cdk-workshop.ts:6:1)",
               "Module._compile (node:internal/modules/cjs/loader:1102:14)",
               "Module.m._compile (/home/ec2-user/environment/cdk/node_modules/ts-node/src/index.ts:1043:23)",
@@ -2175,7 +2201,7 @@
             "trace": [
               "new BaseLoadBalancer (/home/ec2-user/environment/cdk/node_modules/@aws-cdk/aws-elasticloadbalancingv2/lib/shared/base-load-balancer.ts:208:22)",
               "new ApplicationLoadBalancer (/home/ec2-user/environment/cdk/node_modules/@aws-cdk/aws-elasticloadbalancingv2/lib/alb/application-load-balancer.ts:84:5)",
-              "new CdkWorkshopStack (/home/ec2-user/environment/cdk/lib/cdk-workshop-stack.ts:107:12)",
+              "new CdkWorkshopStack (/home/ec2-user/environment/cdk/lib/cdk-workshop-stack.ts:127:12)",
               "Object.<anonymous> (/home/ec2-user/environment/cdk/bin/cdk-workshop.ts:6:1)",
               "Module._compile (node:internal/modules/cjs/loader:1102:14)",
               "Module.m._compile (/home/ec2-user/environment/cdk/node_modules/ts-node/src/index.ts:1043:23)",
@@ -2201,7 +2227,7 @@
             "data": "EC2SecurityGroup05DEE054",
             "trace": [
               "new SecurityGroup (/home/ec2-user/environment/cdk/node_modules/@aws-cdk/aws-ec2/lib/security-group.ts:395:26)",
-              "new CdkWorkshopStack (/home/ec2-user/environment/cdk/lib/cdk-workshop-stack.ts:113:24)",
+              "new CdkWorkshopStack (/home/ec2-user/environment/cdk/lib/cdk-workshop-stack.ts:133:24)",
               "Object.<anonymous> (/home/ec2-user/environment/cdk/bin/cdk-workshop.ts:6:1)",
               "Module._compile (node:internal/modules/cjs/loader:1102:14)",
               "Module.m._compile (/home/ec2-user/environment/cdk/node_modules/ts-node/src/index.ts:1043:23)",
