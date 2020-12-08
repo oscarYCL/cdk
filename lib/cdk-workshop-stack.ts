@@ -13,6 +13,7 @@ import * as rds from '@aws-cdk/aws-rds';
 import { DatabaseInstance, DatabaseInstanceEngine, StorageType } from "@aws-cdk/aws-rds";
 import * as elbv2 from '@aws-cdk/aws-elasticloadbalancingv2';
 import * as secretsManager from '@aws-cdk/aws-secretsmanager';
+import * as ecs from '@aws-cdk/aws-ecs';
 export class CdkWorkshopStack extends cdk.Stack {
   constructor(scope: cdk.App, id: string, props?: cdk.StackProps) {
     super(scope, id, props);
